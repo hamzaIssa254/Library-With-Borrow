@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use JsonException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use JsonException;
 
 class CreateBookRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class CreateBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -55,8 +56,11 @@ class CreateBookRequest extends FormRequest
 
 
     }
-   
 
+    /**
+     * Summary of attributes
+     * @return string[]
+     */
     public function attributes()
     {
         return [
@@ -64,7 +68,10 @@ class CreateBookRequest extends FormRequest
             'author' => 'مؤلف الكتاب',
         ];
     }
-
+    /**
+     * Summary of messages
+     * @return string[]
+     */
     public function messages()
     {
         return [

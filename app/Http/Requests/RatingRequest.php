@@ -36,7 +36,11 @@ class RatingRequest extends FormRequest
 
         ];
     }
-
+    /**
+     * Summary of withValidator
+     * @param mixed $validator
+     * @return void
+     */
     public function withValidator($validator)
     {
 
@@ -45,14 +49,14 @@ class RatingRequest extends FormRequest
                         $userId = Auth::id();
                         $bookId = $this->input('book_id');
 
-                        // تحقق من وجود تقييم سابق لنفس الكتاب من نفس المستخدم
+
                         $existingRating = Rate::where('user_id', $userId)
                                                ->where('book_id', $bookId)
                                                ->exists();
 
                            $borrowed = Borrow::where('user_id', $userId)
                           ->where('book_id', $bookId)
-                          ->whereNull('returned_at') // تأكد من أن الكتاب قد تم إرجاعه
+                          ->whereNull('returned_at')
                           ->exists();
 
 
@@ -86,7 +90,7 @@ class RatingRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            // 'user_id' => 'معرّف المستخدم',
+
             'book_id' => 'معرّف الكتاب',
             'rating' => 'التقييم',
         ];
@@ -100,7 +104,7 @@ class RatingRequest extends FormRequest
     public function messages(): array
     {
         return [
-            // 'user_id.required' => 'معرّف المستخدم مطلوب.',
+           
             'user_id.exists' => 'المستخدم غير موجود.',
             'book_id.required' => 'معرّف الكتاب مطلوب.',
             'book_id.exists' => 'الكتاب غير موجود.',

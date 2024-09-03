@@ -15,13 +15,13 @@ class BookResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+
             'title' => $this->title,
             'author' => $this->author,
             'description' => $this->description,
             'published_at' => $this->published_at,
             'category' => $this->category->name,
-            'average_rating' => $this->ratings_avg_rating,  // Assuming you have calculated average rating
+            'average_rating' => $this->ratings_avg_rating
         ];
     }
 }

@@ -34,33 +34,7 @@ class Book extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function scopeAvailable($query)
-    {
-        return $query->whereDoesntHave('borrows', function ($query) {
-            $query->whereNull('returned_at');
-        });
-    }
-    public function scopeByAuthor($query,$author)
-    {
-        return $query->when($author, function ($query, $author) {
-            return $query->where('author', $author);
-        });
-    }
-
-    public function scopeByCategory($query,$category_id)
-    {
-        return $query->when($category_id, function ($query, $category_id) {
-            return $query->where('category_id', $category_id);
-        });
-    }
-
-    public function scopeByAvailable($query)
-    {
-        return $query->whereDoesntHave('borrows', function ($query) {
-            $query->whereNull('returned_at');
-        });
-
-    }
+    
 
 
 }

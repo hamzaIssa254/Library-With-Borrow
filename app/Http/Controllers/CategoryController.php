@@ -12,16 +12,25 @@ use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
+    /**
+     * Summary of categoryService
+     * @var
+     */
     protected $categoryService;
-
+    /**
+     * Summary of __construct
+     * @param \App\Services\CategoryService $categoryService
+     */
     public function __construct(CategoryService $categoryService)
     {
-        // $this->authorize('admin');
+
 
         $this->categoryService = $categoryService;
     }
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -33,7 +42,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\CreateCategoryRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CreateCategoryRequest $request)
     {
@@ -43,7 +54,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Summary of show
+     * @param \App\Models\Category $category
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Category $category)
     {
@@ -52,7 +65,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Summary of update
+     * @param \App\Http\Requests\UpdateCategoryRequest $request
+     * @param \App\Models\Category $category
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateCategoryRequest $request,Category $category)
     {
@@ -62,7 +78,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param \App\Models\Category $category
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Category $category)
     {

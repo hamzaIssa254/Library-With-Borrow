@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Borrow;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 class CreateBorrowRequest extends FormRequest
 {
@@ -15,7 +16,7 @@ class CreateBorrowRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
 
@@ -34,6 +35,11 @@ class CreateBorrowRequest extends FormRequest
             'returned_at' => 'date|after:borrowed_at'
         ];
     }
+    /**
+     * Summary of withValidator
+     * @param mixed $validator
+     * @return void
+     */
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
@@ -59,7 +65,13 @@ class CreateBorrowRequest extends FormRequest
 
         });
     }
-
+    /**
+     * Summary of isDateRangeAvailable
+     * @param mixed $bookId
+     * @param mixed $startDate
+     * @param mixed $endDate
+     * @return bool
+     */
     private function isDateRangeAvailable($bookId, $startDate, $endDate)
 {
     return !Borrow::where('book_id', $bookId)
@@ -73,6 +85,12 @@ class CreateBorrowRequest extends FormRequest
                   })
                   ->exists();
 }
+    /**
+     * Summary of failedValidation
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     * @return never
+     */
     public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
 
@@ -85,7 +103,10 @@ class CreateBorrowRequest extends FormRequest
 
     }
 
-
+    /**
+     * Summary of attributes
+     * @return string[]
+     */
     public function attributes()
     {
         return [
@@ -94,7 +115,10 @@ class CreateBorrowRequest extends FormRequest
             'due_date' => 'تاريخ الإرجاع',
         ];
     }
-
+    /**
+     * Summary of messages
+     * @return string[]
+     */
     public function messages()
     {
         return [

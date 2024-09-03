@@ -26,7 +26,9 @@ class RateController extends Controller
         $this->ratingservice = $rating;
     }
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -36,7 +38,9 @@ class RateController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\RatingRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(RatingRequest $request)
     {
@@ -46,7 +50,9 @@ class RateController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Summary of show
+     * @param \App\Models\Rate $rate
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Rate $rate)
     {
@@ -56,7 +62,10 @@ class RateController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Summary of update
+     * @param \App\Http\Requests\UpdateRatingRequest $request
+     * @param \App\Models\Rate $rate
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateRatingRequest $request, Rate $rate)
     {
@@ -66,7 +75,9 @@ class RateController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param \App\Models\Rate $rate
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Rate $rate)
     {

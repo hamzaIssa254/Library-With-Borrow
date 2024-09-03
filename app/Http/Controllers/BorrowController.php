@@ -12,14 +12,23 @@ use App\Http\Requests\UpdateBorrowRequest;
 
 class BorrowController extends Controller
 {
+    /**
+     * Summary of borrowService
+     * @var
+     */
     protected $borrowService;
-
+    /**
+     * Summary of __construct
+     * @param \App\Services\BorrowService $borrowService
+     */
     public function __construct(BorrowService $borrowService)
     {
         $this->borrowService = $borrowService;
     }
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -30,7 +39,9 @@ class BorrowController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\CreateBorrowRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CreateBorrowRequest $request)
     {
@@ -40,7 +51,9 @@ class BorrowController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Summary of show
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(int $id)
     {
@@ -49,7 +62,10 @@ class BorrowController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Summary of update
+     * @param \App\Http\Requests\UpdateBorrowRequest $request
+     * @param \App\Models\Borrow $borrow
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateBorrowRequest $request, Borrow $borrow)
     {
@@ -60,7 +76,9 @@ class BorrowController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param \App\Models\Borrow $borrow
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Borrow $borrow)
     {
@@ -68,7 +86,11 @@ class BorrowController extends Controller
         return ApiResponseService::success(null,'delete success');
 
     }
-
+    /**
+     * Summary of retrieveBook
+     * @param \App\Models\Borrow $borrow
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function retrieveBook(Borrow $borrow)
     {
         $this->borrowService->returnBook($borrow);

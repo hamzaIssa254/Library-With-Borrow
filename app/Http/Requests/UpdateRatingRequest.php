@@ -28,12 +28,16 @@ class UpdateRatingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'user_id' => 'required|exists:users,id|integer',
+
             'book_id' => 'nullable|exists:books,id',
             'rating' => 'nullable|integer|min:1|max:5',
         ];
     }
-
+    /**
+     * Summary of withValidator
+     * @param mixed $validator
+     * @return void
+     */
     public function withValidator($validator)
     {
 

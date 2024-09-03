@@ -16,8 +16,8 @@ class UpdateBorrowRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $borrow = Borrow::where('user_id',Auth::id());
-        return Auth::check() && $borrow;
+
+        return Auth::check();
     }
 
     /**
@@ -34,7 +34,11 @@ class UpdateBorrowRequest extends FormRequest
             'returned_at' => 'nullable|date|after_or_equal:borrowed_at',
         ];
     }
-
+    /**
+     * Summary of withValidator
+     * @param mixed $validator
+     * @return void
+     */
     public function withValidator($validator)
     {
 

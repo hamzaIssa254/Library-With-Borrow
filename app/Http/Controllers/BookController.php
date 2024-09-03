@@ -13,27 +13,37 @@ use App\Http\Requests\UpdateBookRequest;
 
 class BookController extends Controller
 {
-
+    /**
+     * Summary of bookService
+     * @var
+     */
     protected $bookService;
-
+    /**
+     * Summary of __construct
+     * @param \App\Services\BookService $bookService
+     */
     public function __construct(BookService $bookService)
     {
         $this->bookService = $bookService;
     }
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
          $filters = $request->only(['author','category_id','available']);
         $perPage = $request->input('per_page', 15);
         $books= $this->bookService->listAllBooks($filters,$perPage);
-        return ApiResponseService::paginated($books,'books retreive success');
+        return ApiResponseService::paginated(BookResource::collection($books),'books retreive success');
 
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\CreateBookRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CreateBookRequest $request)
     {
@@ -43,7 +53,9 @@ class BookController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Summary of show
+     * @param \App\Models\Book $book
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Book $book)
     {
@@ -52,7 +64,10 @@ class BookController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Summary of update
+     * @param \App\Http\Requests\UpdateBookRequest $request
+     * @param \App\Models\Book $book
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
@@ -62,7 +77,9 @@ class BookController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param \App\Models\Book $book
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Book $book)
     {

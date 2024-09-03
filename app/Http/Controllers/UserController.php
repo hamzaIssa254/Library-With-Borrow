@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
+    /**
+     * Summary of userService
+     * @var
+     */
     protected $userService;
-
+    /**
+     * Summary of __construct
+     * @param \App\Services\UserService $userService
+     */
     public function __construct(UserService $userService)
     {
         $this->middleware('admin');
@@ -23,7 +29,9 @@ class UserController extends Controller
         $this->userService = $userService;
     }
     /**
-     * Display a listing of the resource.
+     * Summary of index
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -35,7 +43,9 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Summary of store
+     * @param \App\Http\Requests\RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(RegisterRequest $request)
     {
@@ -45,7 +55,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Summary of show
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(User $user)
     {
@@ -54,7 +66,10 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Summary of update
+     * @param \App\Http\Requests\UpadateUserRequest $request
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpadateUserRequest $request, User $user)
     {
@@ -64,7 +79,9 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Summary of destroy
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(User $user)
     {
