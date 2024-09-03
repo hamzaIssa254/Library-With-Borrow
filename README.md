@@ -93,6 +93,7 @@ Error Handling: Custom error responses are provided for various validation error
 Testing
 Run tests using PHPUnit:
 php artisan test
+test the project with postman:https://documenter.getpostman.com/view/34383133/2sAXjNXWXS
 
 Contributing
 Contributions are welcome! Please submit pull requests and ensure that tests are included with your changes.
